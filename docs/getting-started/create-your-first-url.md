@@ -2,8 +2,9 @@
 sidebar_position: 1
 sidebar_label: "Create Your First URL"
 title: "Create Your First URL"
-pagination_next: getting-started/paying-for-content
-pagination_label: "Pay for Content"
+# id: create-your-first-url
+# pagination_next: getting-started/paying-for-content
+# pagination_label: "Pay for Content"
 ---
 
 # Introduction to Proxy402

@@ -14,15 +14,18 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  */
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
+    'intro',
     {
       type: 'category',
       label: 'Getting Started',
       link: {
-        type: 'doc',
-        id: 'getting-started/introduction',
+        type: 'generated-index',
+        title: 'Getting Started with Proxy402',
+        description: 'Learn how to use Proxy402 to monetize your APIs and content',
+        slug: '/getting-started'
       },
       items: [
-        'getting-started/introduction',
+        'getting-started/create-your-first-url',
         'getting-started/paying-for-content',
         'getting-started/custom-payment-address',
         'getting-started/verifying-requests',
