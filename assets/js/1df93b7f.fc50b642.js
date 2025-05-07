@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkproxy_402_docs=self.webpackChunkproxy_402_docs||[]).push([[583],{6107:(t,r,e)=>{e.r(r),e.d(r,{default:()=>o});e(6540);var s=e(6347),n=e(4848);function o(){return(0,n.jsx)(s.rd,{to:"/getting-started/introduction"})}}}]);
