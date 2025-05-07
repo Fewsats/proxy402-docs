@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 sidebar_label: "Create Your First URL"
+title: "Create Your First URL"
+pagination_next: getting-started/paying-for-content
+pagination_label: "Pay for Content"
 ---
 
 # Introduction to Proxy402
@@ -39,9 +42,9 @@ Now that you have a test URL, let's see how you can pay for it in the next secti
 
 Continue with these guides to learn more about using Proxy402:
 
-- [Pay for Content](/docs/getting-started/paying-for-content) - Learn how to use the client to pay for monetized URLs
-- [Direct Payments](/docs/getting-started/custom-payment-address) - Receive payments directly to your wallet
-- [Verify Requests](/docs/getting-started/verifying-requests) - Ensure all requests to your server are properly paid
-- [About X402 Protocol](/docs/getting-started/what-is-x402) - Dive deeper into how the X402 protocol works
+- [Pay for Content](paying-for-content) - Learn how to use the client to pay for monetized URLs
+- [Direct Payments](custom-payment-address) - Receive payments directly to your wallet
+- [Verify Requests](verifying-requests) - Ensure all requests to your server are properly paid
+- [About X402 Protocol](what-is-x402) - Dive deeper into how the X402 protocol works
 
 For more information about the X402 protocol, you can also visit [x402.org](https://x402.org).

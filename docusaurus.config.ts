@@ -10,15 +10,18 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://proxy402.com',
+  url: 'https://fewsats.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/proxy402-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Fewsats', // Usually your GitHub org/user name.
   projectName: 'proxy402-docs', // Usually your repo name.
+
+  // GitHub Pages deployment configurations
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -55,13 +58,13 @@ const config: Config = {
       logo: {
         alt: 'Proxy402 Logo',
         src: 'img/logo.svg',
+        href: 'https://proxy402.com',
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          to: '/getting-started/introduction',
+          label: 'Getting Started',
           position: 'left',
-          label: 'Documentation',
         },
         {
           href: 'https://github.com/Fewsats/proxy402',
