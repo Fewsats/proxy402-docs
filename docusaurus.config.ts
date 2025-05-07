@@ -37,19 +37,9 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          routeBasePath: '/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -59,11 +49,11 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/proxy402-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Proxy402',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Proxy402 Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -71,7 +61,12 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documentation',
+        },
+        {
+          href: 'https://github.com/Fewsats/proxy402',
+          label: 'GitHub',
+          position: 'right',
         },
       ],
     },
@@ -82,8 +77,12 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Create Your First URL',
+              to: '/getting-started/introduction',
+            },
+            {
+              label: 'About X402',
+              to: '/getting-started/what-is-x402',
             },
           ],
         },
@@ -106,6 +105,10 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/Fewsats/proxy402',
+            },
+            {
+              label: 'X402 Protocol',
+              href: 'https://x402.org',
             },
           ],
         },

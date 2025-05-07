@@ -1,110 +1,113 @@
 ---
 sidebar_position: 5
+sidebar_label: "Verify Requests"
 ---
 
 # Verifying Requests
 
-If you own or control the target server that receives requests through Proxy402, you might want to verify that these requests are legitimate paid requests rather than direct access attempts that bypass the payment system.
+When you monetize a URL with Proxy402, you need a way to ensure that all requests to your original content have been properly paid for. To prevent unauthorized access and verify that requests are coming through Proxy402, a special security header is included with every forwarded request.
 
-Proxy402 makes this easy with the `Proxy402-Secret` header, which is automatically added to all proxied requests after successful payment.
+## The Proxy402-Secret Header
 
-## How Request Verification Works
+Every time a paid request is forwarded to your original URL, Proxy402 adds a header:
 
-When someone pays through Proxy402 to access your content, the following happens:
+```
+Proxy402-Secret: YOUR_UNIQUE_SECRET
+```
 
-1. User accesses your Proxy402 URL (e.g., `https://proxy402.com/AbCdEfG`)
-2. User makes the required payment
-3. Proxy402 forwards the request to your original target URL
-4. Proxy402 adds a special `Proxy402-Secret` header to the request
-5. Your server can verify this secret header to confirm it's a paid request
+This secret is unique to your account and serves as proof that the request has passed through Proxy402 and payment has been verified.
 
-This allows you to ensure that all access to your content comes through the proper payment flow.
+## Finding Your Secret
 
-## Setting Up Request Verification
+You can find your Proxy402-Secret in the settings page:
 
-### Step 1: Find Your Secret
+1. Log in to your Proxy402 dashboard
+2. Navigate to the Settings page
+3. Look for the "Proxy402 Secret" field - this contains your unique secret
 
-1. Go to your Proxy402 dashboard
-2. Navigate to the Settings section
-3. Look for your unique `Proxy402-Secret` value
-4. Copy this secret value
+![Settings Page](/img/settings.png)
 
-<img src="/img/proxy_secret.png" alt="Proxy402 Secret" />
+> If you believe your secret has been compromised, you can regenerate it from the Settings page.
 
-### Step 2: Add Verification to Your Server
+## Implementing Verification in Your Server
 
-Add code to your server that checks for the `Proxy402-Secret` header. Here are examples in various languages:
+If you own the server that hosts your original content, you should add verification code to check for this header. Here are some examples:
 
-#### Node.js Example
+### Node.js (Express)
+
 ```javascript
-app.get('/api/data', (req, res) => {
-  // Check if the secret header matches your secret
-  if (req.headers['proxy402-secret'] !== 'YOUR_SECRET_FROM_USER_SETTINGS') {
-    return res.status(403).json({ error: 'Unauthorized' });
+app.get('/your-endpoint', (req, res) => {
+  // Get the secret from the request header
+  const secret = req.headers['proxy402-secret'];
+  
+  // Check if the secret matches your secret from the settings page
+  if (secret !== 'YOUR_SECRET_FROM_SETTINGS') {
+    // Reject unauthorized requests
+    return res.status(403).json({ error: 'Unauthorized access' });
   }
   
-  // Process the request if the secret is valid
-  res.json({ data: 'Your protected data' });
+  // Process the authorized request
+  res.json({ data: 'Your protected content' });
 });
 ```
 
-#### Python Example
+### Python (Flask)
+
 ```python
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/api/data')
-def protected_data():
-    # Check if the secret header matches your secret
-    if request.headers.get('Proxy402-Secret') != 'YOUR_SECRET_FROM_USER_SETTINGS':
-        return jsonify({'error': 'Unauthorized'}), 403
+@app.route('/your-endpoint')
+def protected_content():
+    # Get the secret from the request header
+    secret = request.headers.get('Proxy402-Secret')
     
-    # Process the request if the secret is valid
-    return jsonify({'data': 'Your protected data'})
+    # Check if the secret matches your secret from the settings page
+    if secret != 'YOUR_SECRET_FROM_SETTINGS':
+        # Reject unauthorized requests
+        return jsonify({'error': 'Unauthorized access'}), 403
+    
+    # Process the authorized request
+    return jsonify({'data': 'Your protected content'})
 ```
 
-#### Go Example
+### Go
+
 ```go
-func protectedHandler(w http.ResponseWriter, r *http.Request) {
-    // Check if the secret header matches your secret
-    if r.Header.Get("Proxy402-Secret") != "YOUR_SECRET_FROM_USER_SETTINGS" {
-        http.Error(w, "Unauthorized", http.StatusForbidden)
+func handler(w http.ResponseWriter, r *http.Request) {
+    // Get the secret from the request header
+    secret := r.Header.Get("Proxy402-Secret")
+    
+    // Check if the secret matches your secret from the settings page
+    if secret != "YOUR_SECRET_FROM_SETTINGS" {
+        // Reject unauthorized requests
+        http.Error(w, "Unauthorized access", http.StatusForbidden)
         return
     }
     
-    // Process the request if the secret is valid
+    // Process the authorized request
     w.Header().Set("Content-Type", "application/json")
-    w.Write([]byte(`{"data": "Your protected data"}`))
+    w.Write([]byte(`{"data": "Your protected content"}`))
 }
 ```
 
-## When to Use Request Verification
+## Why This Matters
 
-Request verification is particularly useful when:
+Without this verification:
+- Someone could discover your original URL and bypass the payment system
+- You wouldn't be able to distinguish between paid and unpaid requests
+- Your monetization strategy could be compromised
 
-- You want to ensure all access to your content is paid 
-- You're providing premium API access
-- You need to prevent direct access to your resources
-- You're using Proxy402 as part of a broader access control strategy
+By implementing this simple verification check, you ensure that only properly paid requests from Proxy402 can access your content.
 
-## Optional: Additional Security Measures
+## Testing the Verification
 
-For even stronger security, consider implementing these additional measures:
+You can test this by:
 
-1. **IP Restriction**: Configure your server to only accept requests from Proxy402's IP addresses
-2. **HTTPS**: Ensure all communication uses HTTPS encryption
-3. **Rate Limiting**: Implement rate limiting based on the client's IP or other identifiers
+1. Setting up a simple server with verification code
+2. Monetizing its URL with Proxy402
+3. Trying to access the original URL directly (should be rejected)
+4. Accessing through Proxy402 with payment (should succeed)
 
-## Conclusion
-
-With request verification in place, you can be confident that all requests to your content have been properly paid for through Proxy402. This completes the basic setup for monetizing your content with Proxy402.
-
-## Next Steps
-
-Now that you've completed the Getting Started guide, you might want to explore:
-
-- [Server Setup](/docs/core/server-setup) if you want to run your own Proxy402 server
-- [URL Management](/docs/core/url-management) for advanced URL configuration
-- [Payment Flow](/docs/core/payment-flow) to understand the technical details of the payment process
-- [API Reference](/docs/api/endpoints) if you want to integrate Proxy402 with your applications 
+This provides a complete security system for your monetized content. 

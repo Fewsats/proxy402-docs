@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: "Create Your First URL"
 ---
 
 # Introduction to Proxy402
@@ -36,6 +37,11 @@ Now that you have a test URL, let's see how you can pay for it in the next secti
 
 ## What's Next?
 
-Now that you understand how to create a monetized URL and what the X402 protocol response looks like, the next step is to learn how to actually pay for and access the content using an X402-compatible client.
+Continue with these guides to learn more about using Proxy402:
 
-- [Paying for Monetized Content](/docs/getting-started/paying-for-content)
+- [Pay for Content](/docs/getting-started/paying-for-content) - Learn how to use the client to pay for monetized URLs
+- [Direct Payments](/docs/getting-started/custom-payment-address) - Receive payments directly to your wallet
+- [Verify Requests](/docs/getting-started/verifying-requests) - Ensure all requests to your server are properly paid
+- [About X402 Protocol](/docs/getting-started/what-is-x402) - Dive deeper into how the X402 protocol works
+
+For more information about the X402 protocol, you can also visit [x402.org](https://x402.org).
