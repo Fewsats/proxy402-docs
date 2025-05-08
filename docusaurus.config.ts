@@ -50,7 +50,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/proxy402-social-card.jpg',
+    image: 'img/proxy402-social-card.png',
     navbar: {
       title: 'Proxy402',
       logo: {
