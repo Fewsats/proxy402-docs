@@ -114,7 +114,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Proxy402.`,
+      copyright: `Copyright © ${new Date().getFullYear()} <a style="color: #fff;" href="https://proxy402.com" target="_blank" rel="noopener noreferrer">Proxy402</a> by <a style="color: #fff;"  href="https://fewsats.com" target="_blank" rel="noopener noreferrer">Fewsats</a>`,
     },
     prism: {
       theme: prismThemes.github,
