@@ -13,8 +13,9 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  tutorialSidebar: [
-    'intro',
+  // Sidebar for the Getting Started section
+  gettingStartedSidebar: [
+    'intro', // Assuming 'intro.md' is your main introduction page
     {
       type: 'category',
       label: 'Getting Started',
@@ -30,6 +31,23 @@ const sidebars: SidebarsConfig = {
         'getting-started/custom-payment-address',
         'getting-started/verifying-requests',
         'getting-started/what-is-x402'
+      ],
+    },
+  ],
+
+  // Sidebar for the API Reference section
+  apiReferenceSidebar: [
+    {
+      type: 'category',
+      label: 'API Reference',
+      link: {
+        type: 'doc',
+        id: 'api/index', // Links to the overview page of API docs
+      },
+      items: [
+        'api/authentication',
+        'api/routes',
+        'api/purchases',
       ],
     },
   ],

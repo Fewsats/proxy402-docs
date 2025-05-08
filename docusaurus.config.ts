@@ -65,6 +65,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: 'api',
+          label: 'API Reference',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/Fewsats/proxy402',
           label: 'GitHub',
           position: 'right',
@@ -80,6 +85,10 @@ const config: Config = {
             {
               label: 'Create Your First URL',
               to: 'getting-started/create-your-first-url',
+            },
+            {
+              label: 'API Reference',
+              to: 'api',
             },
             {
               label: 'About X402',
