@@ -15,14 +15,16 @@ Proxy402 is a service that allows you to monetize any content on the web. Using 
 
 Let's create a monetized URL using the Bitcoin whitepaper as an example:
 
-1. Log in to [Proxy402](https://proxy402.com) with your Google account
-2. Add this URL: `https://raw.githubusercontent.com/ibz/bitcoin-whitepaper-markdown/refs/heads/master/bitcoin-whitepaper.md`
-3. Set the price to 0.01 USDC
+1. Log in to [Proxy402](https://proxy402.com) with your Google account. From the dashboard, you can choose to monetize an existing URL or upload a file to monetize it.
+2. Add this URL: `https://raw.githubusercontent.com/ibz/bitcoin-whitepaper-markdown/refs/heads/master/bitcoin-whitepaper.md`. (If you were monetizing a file, you would select your file for upload here instead of providing a URL.)
+3. Set the price to 0.01 USDC. You can also specify `credit` and set the number of accesses this payment provides
 4. Toggle test mode ON (to use Base Sepolia testnet)
-5. Select GET as the HTTP method
-6. Click "Add URL"
+5. Select GET as the HTTP method (for files, this is typically always GET).
+6. Click "Add URL" (or "Upload File" if applicable).
 
 After submitting, you'll receive a shortened URL similar to `https://proxy402.com/cizbtYMSzJ`. This is your monetized link. Whenever someone accesses this URL, they'll need to pay 0.01 USDC on the Base Sepolia testnet. After payment, Proxy402 makes a GET request to the original Bitcoin whitepaper URL and returns the content to the user.
+
+If you set up a credit-based link, the first payment grants access and provides a way to use the remaining credits for future access (covered in the 'Accessing Monetized Content' guide).
 
 ## Understanding the X402 Protocol Response
 
