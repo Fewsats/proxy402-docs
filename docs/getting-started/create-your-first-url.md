@@ -22,20 +22,47 @@ Let's create a monetized URL using the Bitcoin whitepaper as an example:
 5. Select GET as the HTTP method (for files, this is typically always GET).
 6. Click "Add URL" (or "Upload File" if applicable).
 
-After submitting, you'll receive a shortened URL similar to `https://proxy402.com/cizbtYMSzJ`. This is your monetized link. Whenever someone accesses this URL, they'll need to pay 0.01 USDC on the Base Sepolia testnet. After payment, Proxy402 makes a GET request to the original Bitcoin whitepaper URL and returns the content to the user.
+After submitting, you'll receive a shortened URL similar to `https://proxy402.com/BbcYpYMy6p`. This is your monetized link. Whenever someone accesses this URL, they'll need to pay 0.00001 USDC on the Base Sepolia testnet. After payment, Proxy402 makes a GET request to the original Bitcoin whitepaper URL and returns the content to the user.
 
 If you set up a credit-based link, the first payment grants access and provides a way to use the remaining credits for future access (covered in the 'Accessing Monetized Content' guide).
 
 ## Understanding the X402 Protocol Response
 
-Open a monetized URL in your browser to see the X402 protocol response. [Click here to view an example](https://proxy402.com/cizbtYMSzJ) of the Bitcoin whitepaper with a 0.01 USDC price tag.
+Open a monetized URL in your browser to see a nice paywall page for your content. [Click here to view an example](https://proxy402.com/BbcYpYMy6p) of the Bitcoin whitepaper with a 0.00001 USDC price tag.
 
-The response will look like this:
+The browser will display a user-friendly payment page that looks like this:
 
 ![X402 Protocol Response in Browser](/img/x402-response-browser.png)
 
-This response contains all the payment details that an X402-compatible client needs to pay for access, including:
-- The payment amount (0.01 USDC)
+If you want to see the raw X402 protocol JSON response (useful for developers), you can use `curl` with the `@` symbol:
+
+```bash
+curl https://proxy402.com/BbcYpYMy6p | jq
+ {
+  "accepts": [
+    {
+      "scheme": "exact",
+      "network": "base",
+      "maxAmountRequired": "10",
+      "resource": "https://proxy402.com/BbcYpYMy6p",
+      "description": "Payment for GET https://proxy402.com/BbcYpYMy6p",
+      "mimeType": "",
+      "payTo": "0xddb24Bd8A6Cb0f2d3eaBF7a828C0b4364668B963",
+      "maxTimeoutSeconds": 60,
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "extra": {
+        "name": "USD Coin",
+        "version": "2"
+      }
+    }
+  ],
+  "error": "X-PAYMENT header is required",
+  "x402Version": 1
+}
+```
+
+This will show you the exact JSON response containing all the payment details that an X402-compatible client needs to pay for access, including:
+- The payment amount (0.00001 USDC)
 - The payment destination (a Base address)
 - Other technical details for the X402 protocol
 
