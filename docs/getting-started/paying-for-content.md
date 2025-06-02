@@ -5,9 +5,42 @@ sidebar_label: "Pay for Content"
 
 # Paying for Monetized Content
 
-In this section, we'll walk through paying for monetized content (URLs or files), understanding how to handle test versus production payments, and how to use access credits. We'll use the Proxy402 client from the GitHub repository.
+In this section, we'll walk through paying for monetized content (URLs or files), understanding how to handle test versus production payments, and how to use access credits. We'll cover both the web-based debug tool and the CLI client.
 
-## Setting Up the Client
+## Method 1: Web Interface (Recommended)
+
+The fastest way to test and pay for X402 content is using the web interface at [proxy402.com/fetch](https://proxy402.com/fetch).
+
+![Debug Tool Interface](/img/debug-page.png)
+
+### Testing X402 Responses
+
+1. Visit [proxy402.com/fetch](https://proxy402.com/fetch)
+2. Paste your monetized URL (e.g., `https://proxy402.com/OsD8kKUZo3`)
+3. Click "Test Request" to see the X402 response with payment details
+4. Copy the X-Payment header if you want to use it manually
+
+### Making Payments
+
+1. Click "Connect Wallet" to connect via WalletConnect (MetaMask, etc.)
+2. For test payments, get test funds from the [Circle USDC Faucet](https://faucet.circle.com/) (select "BASE USDC" for Base Sepolia)
+   ![Faucet Selection](/img/faucet.png)
+3. Click "Pay" to complete the payment using your connected wallet
+4. After payment, you'll see the response with headers including the `X-Payment` header for future access
+
+### Using Purchased Credits
+
+If your resource grants multiple access credits, use the `X-Payment` header from your successful payment:
+
+1. Paste the `X-Payment` header value in the "Paste your X-Payment header here" field
+2. Click "Test Request" to access the content using your credits
+3. Each use consumes one credit without requiring a new blockchain transaction
+
+## Method 2: CLI Client
+
+For developers who prefer command-line tools or need to integrate payments programmatically:
+
+### Setting Up the Client
 
 Let's start by cloning the Proxy402 repository and navigating to the client folder:
 
@@ -31,7 +64,7 @@ And install dependencies:
 npm install
 ```
 
-## Creating a Wallet
+### Creating a Wallet
 
 You'll need a private key for a Base address to make payments. You can use an existing wallet or create a new one. If you don't have one, you can create it using Foundry:
 
@@ -69,7 +102,7 @@ You'll need a private key for a Base address to make payments. You can use an ex
 > 
 > For more details on installing Foundry, see the [official documentation](https://book.getfoundry.sh/getting-started/installation).
 
-## Making Your First Payment Attempt
+### Making Your First Payment Attempt
 
 With the client set up and your private key in the `.env` file, try accessing a monetized URL (e.g., one you created in the previous guide, or the demo `https://proxy402.com/OsD8kKUZo3`):
 
@@ -79,7 +112,7 @@ npm run client -- https://proxy402.com/OsD8kKUZo3
 
 If your wallet is new and unfunded, you'll likely see an error message from the client indicating **"Insufficient funds"**. This is expected.
 
-## Adding Test Funds
+### Adding Test Funds
 
 To proceed with test payments (for resources in "test mode" on Proxy402), your wallet needs test USDC for the Base Sepolia network.
 
@@ -88,7 +121,7 @@ To proceed with test payments (for resources in "test mode" on Proxy402), your w
    ![Faucet Selection](/img/faucet.png)
 3. Enter your wallet address (the one that starts with `0x` from the `cast wallet new` step) and request funds.
 
-## Successful Payment and Accessing Content
+### Successful Payment and Accessing Content
 
 Once your wallet has test funds, run the command again:
 
@@ -108,7 +141,7 @@ This time, the payment should succeed! Here's what to expect:
     ```
     To download the file, copy the entire `download_url` and paste it into your web browser, or use a command-line tool like `curl "PASTED_DOWNLOAD_URL" -o bitcoin-paper.pdf`.
 
-## Using Purchased Credits
+### Using Purchased Credits
 
 When you successfully pay for a resource, the Proxy402 server always includes an `X-Payment` header in its HTTP response. If the resource you paid for grants multiple access credits, this `X-Payment` header value is the token you'll use to access your remaining credits.
 
@@ -142,7 +175,7 @@ If your token is invalid (e.g., all credits used or expired), the `proxy402/clie
 
 For more client command details, see the `proxy402/client/README.md`.
 
-## Making Production Payments (Mainnet)
+### Making Production Payments (Mainnet)
 
 When you want to pay for resources that are *not* in "test mode" (i.e., they require real payment on the Base mainnet):
 
@@ -154,7 +187,7 @@ When you want to pay for resources that are *not* in "test mode" (i.e., they req
     ```
     The client requires you to specify the network; it does not automatically detect it from the server's L402 challenge.
 
-## Checking Your Monetized Resources
+### Checking Your Monetized Resources
 
 If you created your own monetized URL or file, you can use the client to pay for it too:
 
@@ -163,4 +196,3 @@ npm run client -- https://proxy402.com/OsD8kKUZo3
 ```
 
 After making a payment (or using a credit), go back to your Proxy402 dashboard and check your resource's statistics. You'll see that the "Attempts," "Payments," and potentially "Accesses" (if credits were used) counters have increased, and your earnings reflect any new payments.
-

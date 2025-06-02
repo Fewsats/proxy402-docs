@@ -66,6 +66,18 @@ This will show you the exact JSON response containing all the payment details th
 - The payment destination (a Base address)
 - Other technical details for the X402 protocol
 
+## Test Your URL Instantly
+
+For immediate testing without any setup, visit [proxy402.com/fetch](https://proxy402.com/fetch). This web interface lets you:
+- Test X402 requests with any URL
+- Connect your wallet via WalletConnect (MetaMask, etc.)
+- See formatted X402 responses and payment details
+- Make payments directly in the browser
+
+![Debug Tool Interface](/img/debug-page.png)
+
+Simply paste your monetized URL, click "Test Request" to see the X402 response, then use "Connect Wallet" and "Pay" to complete the payment flow.
+
 Now that you have a test URL, let's see how you can pay for it in the next section.
 
 ## What's Next?
