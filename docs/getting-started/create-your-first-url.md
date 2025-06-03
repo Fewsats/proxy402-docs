@@ -22,13 +22,13 @@ Let's create a monetized URL using the Bitcoin whitepaper as an example:
 5. Select GET as the HTTP method (for files, this is typically always GET).
 6. Click "Add URL" (or "Upload File" if applicable).
 
-After submitting, you'll receive a shortened URL similar to `https://proxy402.com/BbcYpYMy6p`. This is your monetized link. Whenever someone accesses this URL, they'll need to pay 0.00001 USDC on the Base Sepolia testnet. After payment, Proxy402 makes a GET request to the original Bitcoin whitepaper URL and returns the content to the user.
+After submitting, you'll receive a shortened URL similar to `https://proxy402.com/DDSYO8ch1S`. This is your monetized link. Whenever someone accesses this URL, they'll need to pay 0.00001 USDC on the Base Sepolia testnet. After payment, Proxy402 makes a GET request to the original Bitcoin whitepaper URL and returns the content to the user.
 
 If you set up a credit-based link, the first payment grants access and provides a way to use the remaining credits for future access (covered in the 'Accessing Monetized Content' guide).
 
 ## Understanding the X402 Protocol Response
 
-Open a monetized URL in your browser to see a nice paywall page for your content. [Click here to view an example](https://proxy402.com/BbcYpYMy6p) of the Bitcoin whitepaper with a 0.00001 USDC price tag.
+Open a monetized URL in your browser to see a nice paywall page for your content. [Click here to view an example](https://proxy402.com/DDSYO8ch1S) of the Bitcoin whitepaper with a 0.00001 USDC price tag.
 
 The browser will display a user-friendly payment page that looks like this:
 
@@ -37,15 +37,15 @@ The browser will display a user-friendly payment page that looks like this:
 If you want to see the raw X402 protocol JSON response (useful for developers), you can use `curl` with the `@` symbol:
 
 ```bash
-curl https://proxy402.com/BbcYpYMy6p | jq
+curl https://proxy402.com/DDSYO8ch1S | jq
  {
   "accepts": [
     {
       "scheme": "exact",
       "network": "base",
       "maxAmountRequired": "10",
-      "resource": "https://proxy402.com/BbcYpYMy6p",
-      "description": "Payment for GET https://proxy402.com/BbcYpYMy6p",
+      "resource": "https://proxy402.com/DDSYO8ch1S",
+      "description": "Payment for GET https://proxy402.com/DDSYO8ch1S",
       "mimeType": "",
       "payTo": "0xddb24Bd8A6Cb0f2d3eaBF7a828C0b4364668B963",
       "maxTimeoutSeconds": 60,

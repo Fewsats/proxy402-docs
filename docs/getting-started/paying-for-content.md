@@ -16,7 +16,7 @@ The fastest way to test and pay for X402 content is using the web interface at [
 ### Testing X402 Responses
 
 1. Visit [proxy402.com/fetch](https://proxy402.com/fetch)
-2. Paste your monetized URL (e.g., `https://proxy402.com/OsD8kKUZo3`)
+2. Paste your monetized URL (e.g., `https://proxy402.com/OCVnX7cjmd`)
 3. Click "Test Request" to see the X402 response with payment details
 4. Copy the X-Payment header if you want to use it manually
 
@@ -104,10 +104,10 @@ You'll need a private key for a Base address to make payments. You can use an ex
 
 ### Making Your First Payment Attempt
 
-With the client set up and your private key in the `.env` file, try accessing a monetized URL (e.g., one you created in the previous guide, or the demo `https://proxy402.com/OsD8kKUZo3`):
+With the client set up and your private key in the `.env` file, try accessing a monetized URL (e.g., one you created in the previous guide, or the demo `https://proxy402.com/OCVnX7cjmd`):
 
 ```bash
-npm run client -- https://proxy402.com/OsD8kKUZo3
+npm run client -- https://proxy402.com/OCVnX7cjmd
 ```
 
 If your wallet is new and unfunded, you'll likely see an error message from the client indicating **"Insufficient funds"**. This is expected.
@@ -126,7 +126,7 @@ To proceed with test payments (for resources in "test mode" on Proxy402), your w
 Once your wallet has test funds, run the command again:
 
 ```bash
-npm run client -- https://proxy402.com/OsD8kKUZo3
+npm run client -- https://proxy402.com/OCVnX7cjmd
 ```
 
 This time, the payment should succeed! Here's what to expect:
@@ -147,8 +147,9 @@ When you successfully pay for a resource, the Proxy402 server always includes an
 
 After your first successful payment for a multi-credit item, look for the `X-Payment` header in the HTTP response. The `proxy402/client` might display this in its output, especially in verbose mode where full response headers are shown.
 
+For example, the URL below provides 5 credits to access the bitcoin white paper in base sepolia.
 ```
-npm run client -- https://proxy402.com/cizbtYMSzJResponse
+npm run client -- https://proxy402.com/pT6bpt_zBz
 ...
 Request Headers: {
   "Accept": "application/json, text/plain, */*",
@@ -162,7 +163,7 @@ Request Headers: {
 The `X-Payment` header, shown in the example above, contains the token that identifies your purchase. This token is used to access your purchased credits. To use a saved credit for subsequent access to the *same* resource, provide this token using the `--payment-header` flag with the client:
 
 ```bash
-npm run client -- https://proxy402.com/YOUR_SHORT_CODE --payment-header "YOUR_SAVED_X_PAYMENT_TOKEN_VALUE"
+npm run client -- https://proxy402.com/pT6bpt_zBz --payment-header "YOUR_SAVED_X_PAYMENT_TOKEN_VALUE"
 ```
 
 The client will send this token in the `X-Payment` request header.
@@ -183,7 +184,7 @@ When you want to pay for resources that are *not* in "test mode" (i.e., they req
 2.  The same wallet address can be used for both Base Sepolia (testnet) and Base mainnet. You simply need to have the correct type of funds (test USDC or real USDC) for the resource you're trying to access.
 3.  Run the client on mainnet with the `--network` flag set to `base-mainnet` (or `base`):
     ```bash
-    npm run client -- https://proxy402.com/OsD8kKUZo3 --network base-mainnet
+    npm run client -- https://proxy402.com/DDSYO8ch1S --network base-mainnet
     ```
     The client requires you to specify the network; it does not automatically detect it from the server's L402 challenge.
 
@@ -192,7 +193,7 @@ When you want to pay for resources that are *not* in "test mode" (i.e., they req
 If you created your own monetized URL or file, you can use the client to pay for it too:
 
 ```bash
-npm run client -- https://proxy402.com/OsD8kKUZo3
+npm run client -- https://proxy402.com/DDSYO8ch1S
 ```
 
 After making a payment (or using a credit), go back to your Proxy402 dashboard and check your resource's statistics. You'll see that the "Attempts," "Payments," and potentially "Accesses" (if credits were used) counters have increased, and your earnings reflect any new payments.
